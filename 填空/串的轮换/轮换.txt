@@ -1,0 +1,31 @@
+
+轮换
+
+串“abcd”每个字符都向右移位，最右的移动到第一个字符的位置，就变为“dabc”。这称为对串进行位移=1的轮换。同理，“abcd”变为：“cdab”则称为位移=2的轮换。
+
+下面的代码实现了对串s进行位移为n的轮换。请补全缺失的代码。
+
+把填空的答案（仅填空处的答案，不包括题面）存入考生文件夹下对应题号的“解答.txt”中即可。
+void shift(char* s, int n)
+{
+	char* p;
+	char* q;
+	int len = strlen(s);
+	if(len==0) return;
+	if(n<=0 || n>=len) return;
+
+	char* s2 = (char*)malloc(_________);
+	p = s;
+	q = s2 + n % len;
+	while(*p)
+	{	
+		*q++ = *p++;
+		if(q-s2>=len)
+		{
+			*q = ___________;
+			q = s2;
+		}
+	}
+	strcpy(s,s2);
+	free(s2);
+}

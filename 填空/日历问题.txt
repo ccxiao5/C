@@ -1,0 +1,40 @@
+
+人类历史上出现了很多种历法。现行的公历即格里历由儒略历改革而来。它是目前较为精确和规则简明的一种历法，约3300年误差一日。因为闰年问题以及每个月的长度不等，仍然使得某些计算较为麻烦。比如：求两个日期间差多少天。
+下面的代码实现了求两个由公历表示的日期间差多少天的功能。
+其计算原理是先求出每个日期距离1年1月1日的天数差值，再进一步做差即可。
+请研读代码，填写缺失的部分。
+
+把填空的答案（仅填空处的答案，不包括题面）存入考生文件夹下对应题号的“解答.txt”中即可。
+
+struct MyDate
+{
+	int year;
+	int month;
+	int day;
+};
+
+int GetAbsDays(MyDate x)
+{
+	int i;
+	int month_day[] = {31,28,31,30,31,30,31,31,30,31,30,31};
+	int year = x.year-1;  // 因为欲求距离1年1月1日的距离
+	int days = year * 365 + year/4 - year/100 + year/400;
+	if(x.year%4==0 && x.year%100!=0 || x.year%400==0) month_day[1]++;
+	for(i=0; i<______________; i++)
+		days += month_day[i];
+	days += x.day-1;
+	return days;
+}
+
+int GetDiffDays(MyDate a, MyDate b)
+{
+	return GetAbsDays(b) - GetAbsDays(a);
+}
+
+int main(int argc, char* argv[])
+{
+	MyDate a = {1842,5,18};
+	MyDate b = {2000,3,13};
+	int n = GetDiffDays(a,b);
+	printf("%d\n", n);
+}
